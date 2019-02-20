@@ -1,7 +1,7 @@
 module JSONAPI
   module RSpec
     module Attributes
-      ::RSpec::Matchers.define :have_attribute do |attr|
+      ::RSpec::Matchers.define :have_jsonapi_attribute do |attr|
         match do |actual|
           (actual['attributes'] || {}).key?(attr.to_s) &&
             (!@val_set || actual['attributes'][attr.to_s] == @val)
@@ -13,7 +13,7 @@ module JSONAPI
         end
       end
 
-      ::RSpec::Matchers.define :have_attributes do |*attrs|
+      ::RSpec::Matchers.define :have_jsonapi_attributes do |*attrs|
         match do |actual|
           return false unless actual.key?('attributes')
 
